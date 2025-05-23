@@ -10,17 +10,17 @@ read_nums = [random.randint(start, end) for _ in range(num)]
 
 # 빈도 계산
 freq = {}
-for number in read_nums:
-    if number in freq:
-        freq[number] += 1
+for number in read_nums: # number 에 리스트 값을 부여
+    if number in freq: # number랑 수가 겹치면
+        freq[number] += 1 # 카운트 
     else:
-        freq[number] = 1
+        freq[number] = 1 # 1
 
 # (숫자, 빈도) 쌍 리스트 생성
 freq_list = list(freq.items())
 
 # 상위 3개를 저장할 리스트 (삽입 정렬 방식)
-top3 = []
+top3 = [] 
 
 for item in freq_list:
     inserted = False
