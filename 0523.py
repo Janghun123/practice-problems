@@ -8,33 +8,47 @@ end = int(input("끝 범위를 입력하세요: "))
 # 난수 생성
 read_nums = [random.randint(start, end) for _ in range(num)]
 
-# 빈도 계산
-freq = {}
-for number in read_nums: # number 에 리스트 값을 부여
-    if number in freq: # number랑 수가 겹치면
-        freq[number] += 1 # 카운트 
-    else:
-        freq[number] = 1 # 1
+# 고유 숫자 + 빈도 구하기
+count_num_list = []
+freq_list = []  # (숫자, 빈도)
 
-# (숫자, 빈도) 쌍 리스트 생성
-freq_list = list(freq.items())
+for i in range(len(read_nums)):
+    n = read_nums[i]
+    if n in count_num_list:
+        continue
 
-# 상위 3개를 저장할 리스트 (삽입 정렬 방식)
-top3 = [] 
+    count = 0
+    for j in range(len(read_nums)):
+        if read_nums[j] == n:
+            count += 1
 
-for item in freq_list:
-    inserted = False
-    for i in range(len(top3)):
-        if item[1] > top3[i][1]:  # 빈도 기준 비교
-            top3.insert(i, item)
-            inserted = True
-            break
-    if not inserted:
-        top3.append(item)
-    if len(top3) > 3:
-        top3 = top3[:3]
+    freq_list.append((n, count))
+    count_num_list.append(n)
 
-# 출력
-print("\n가장 많이 등장한 숫자 TOP 3:")
-for number, count in top3:
-    print(f"숫자 {number} = {count}회 등장")
+# 출력 (디버깅용)
+print(f"\n고유 숫자 리스트: {count_num_list}")
+print(f"빈도 수 리스트: {freq_list}")
+
+# 상위 3개의 빈도값 찾기
+top_freqs = []
+
+for i in range(len(freq_list)):
+    freq = freq_list[i][1]  # 두 번째 값만 비교 (정수)
+    if freq not in top_freqs:
+        if len(top_freqs) < 3: # 상위3개 이내의 값
+            top_freqs.append(freq)
+        else:
+            min_val = top_freqs[0]
+            min_idx = 0
+            for k in range(1, len(top_freqs)):
+                if top_freqs[k] < min_val:
+                    min_val = top_freqs[k]
+                    min_idx = k
+            if freq > min_val:
+                top_freqs[min_idx] = freq
+
+# 최종 출력
+print(f"\n📊 가장 많이 등장한 숫자 Top 3 (동점 포함):")
+for pair in freq_list:
+    if pair[1] in top_freqs:
+        print(f"숫자 {pair[0]} → {pair[1]}회")
