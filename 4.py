@@ -64,10 +64,18 @@
 # bar = 2     # set
 # print(bar)  # get
 
-bar = [ 5, 6, 7]
-foo = bar
-sol, *pos = bar
+# bar = [5, 6, 7]
+# foo = bar
+# a, b, c = bar
+# sol, *pos = bar
 
-print(foo)
+# print(foo)
 
-print(sol, pos)
+# print(sol, pos)
+
+def test(*args):
+    pass
+
+bar = [2, 3, 4]
+
+test(*bar)
