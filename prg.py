@@ -30,10 +30,10 @@ def print_all_students(students_list):
         return
     
     print("[ 전체 학생 성적 ]")
-    print(f"{'학번':<8}{'이름':<6}{'국어':<5}{'영어':<5}{'수학':<5}{'합계':<6}{'평균':<6}")
+    print("학번\t이름\t국어\t영어\t수학\t합계\t평균")
 
     for number, info in students_list.items():
-        print(f"{number:<10}{info['이름']:<6}{info['국어']:<7}{info['영어']:<7}{info['수학']:<7}{info['합계']:<8}{info['평균']:<.2f}")
+        print(f"{number}\t{info['이름']}\t{info['국어']}\t{info['영어']}\t{info['수학']}\t{info['합계']}\t{info['평균']:<.2f}")
 
 def search_student(students_list):
     track_student_number = int(input("조회할 학번 입력: "))
