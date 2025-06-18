@@ -79,6 +79,7 @@ while True:
         print_all_students(students_list)
     elif choice_menu == "3":
         search_student(students_list)
+        # 삭제 함수
     elif choice_menu == "4":
         delete_student(students_list)
     elif choice_menu == "5":
